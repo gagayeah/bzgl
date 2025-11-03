@@ -449,6 +449,12 @@
 
       // 渲染博主表格行
       function renderBloggerRow(blogger) {
+        // 格式化数字（添加千分位）
+        const formatNumber = (num) => {
+          if (!num && num !== 0) return '-';
+          return num.toLocaleString();
+        };
+
         return `
           <tr>
             <td>
@@ -459,11 +465,20 @@
             </td>
             <td>${blogger.followers ? blogger.followers.toLocaleString() : '-'}</td>
             <td><span class="status-tag status-${blogger.status}">${blogger.status}</span></td>
-            <td>
+            <td style="background: #fffcfc; text-align: center;">
               ${blogger.xhsLink || blogger.xhs_link
-                ? `<a href="${blogger.xhsLink || blogger.xhs_link}" class="link" target="_blank">查看</a>`
+                ? `<a href="${blogger.xhsLink || blogger.xhs_link}" class="link" target="_blank">查看笔记</a>`
                 : '<span class="no-data">-</span>'
               }
+            </td>
+            <td style="background: #fffcfc; text-align: center;">
+              ${formatNumber(blogger.xhsLikes || blogger.xhs_likes)}
+            </td>
+            <td style="background: #fffcfc; text-align: center;">
+              ${formatNumber(blogger.xhsFavorites || blogger.xhs_favorites)}
+            </td>
+            <td style="background: #fffcfc; text-align: center;">
+              ${formatNumber(blogger.xhsComments || blogger.xhs_comments)}
             </td>
             <td>
               ${blogger.dianpingLink || blogger.dianping_link
@@ -501,9 +516,20 @@
                     <th>昵称</th>
                     <th>粉丝数</th>
                     <th>状态</th>
-                    <th>小红书</th>
+                    <th colspan="4" style="background: #fffafa; text-align: center;">小红书</th>
                     <th>大众点评</th>
                     <th>抖音</th>
+                  </tr>
+                  <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th style="background: #fffafa; text-align: center;">链接</th>
+                    <th style="background: #fffafa; text-align: center;">点赞</th>
+                    <th style="background: #fffafa; text-align: center;">收藏</th>
+                    <th style="background: #fffafa; text-align: center;">评论</th>
+                    <th></th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -528,9 +554,20 @@
                   <th>昵称</th>
                   <th>粉丝数</th>
                   <th>状态</th>
-                  <th>小红书</th>
+                  <th colspan="4" style="background: #fffafa; text-align: center;">小红书</th>
                   <th>大众点评</th>
                   <th>抖音</th>
+                </tr>
+                <tr>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th style="background: #fffafa; text-align: center;">链接</th>
+                  <th style="background: #fffafa; text-align: center;">点赞</th>
+                  <th style="background: #fffafa; text-align: center;">收藏</th>
+                  <th style="background: #fffafa; text-align: center;">评论</th>
+                  <th></th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
